@@ -1,0 +1,30 @@
+<html>
+    <head>
+        
+        <style>
+            div.title 
+            {
+                background-color:rgb(255, 112, 16);
+                padding-top:25px;
+                padding-bottom:25px;
+                margin-left:-50px;
+                margin-right:-50px;
+                text-align: center;
+            }
+        </style>
+        {% if title %}
+            <title>{{title}}</title>
+        {% else %}
+            <title></title>
+        {% endif %}
+    </head>
+    <body>
+        <div class="title">
+            <h1>Computer-based test System</h1>
+        </div>
+        
+         {% block content %}
+         {% endblock %}
+        
+    </body>
+</html>

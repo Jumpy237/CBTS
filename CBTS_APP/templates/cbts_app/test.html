@@ -1,0 +1,44 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+
+
+{% if list %}
+ 
+<h1>question : {{q.title}}</h1>
+
+<form method="GET">
+{% for key, value in list.items %}
+    {% if key == 'totalscore' %}
+    <input type = 'hidden' name='totalscore' value={{value}}>
+    {% else %}
+    <h1>{{key}}</h1>
+    
+    {% for k,v in value.items %}
+        
+        <input type="radio" name="selectedchoice{{v.1}}" value={{v.2}}>
+        {% if forloop.last %}
+        <input type='hidden' name='topic{{v.1}}' value = {{v.0}}>
+        {% endif %}
+        <label for={{c.choice}}>{{k}}</label>
+        
+    {% endfor %}
+    
+    {% endif %}
+   
+{% endfor %}
+
+
+
+
+
+<button type=submit>submit</button>
+</form>
+{% else %}
+
+<h1>YOUR SCORE : {{score}} out of {{total}} <br>{{percentage}}%</h1>
+{% for k,v in cnt.items %}
+<h1>topic : {{k}} correct : {{v}}</h1>
+{% endfor %}
+{% endif %}
+{% endblock content%}

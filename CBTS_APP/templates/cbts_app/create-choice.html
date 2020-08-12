@@ -1,0 +1,14 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+{% for c in choices %}
+<b>{{c.id}}.</b> choice: {{c.choice}} point: {{c.point}}<br>
+{% endfor %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form}}<br>
+    
+    <input type='submit'>
+</form>
+
+{% endblock content %}

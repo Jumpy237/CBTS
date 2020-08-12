@@ -1,0 +1,40 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+<style>
+    table,td,th
+    {
+        width: 80%;
+        border: 1px solid black;
+    }
+ 
+    
+</style>
+<h1>Available Test</h1>
+<b><a href="create-subject">create subject</a></b>  <b><a href="view-subject">view subject</a></b>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date</th>
+    </tr>
+    
+    <tr>
+        <td>Test Name</td>
+        <td>Author Name</td>
+        <td>Date</td>
+    </tr>
+
+    
+    {% for e in test_all %}
+    <tr>
+        
+        <td><a href="test?title={{e.title}}">{{e.title}}</a></td>
+        <td>{{e.author}}</td>
+        <td>{{e.date_posted}}</td>
+    </tr>
+    
+    {% endfor %}
+
+</table>
+{% endblock content %}

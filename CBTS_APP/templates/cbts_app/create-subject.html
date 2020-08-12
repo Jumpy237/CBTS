@@ -1,0 +1,13 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form}}
+    
+    <input type='submit' name='todo' value='save'>
+    <input type='submit' name='todo' value='continue'>
+</form>
+
+{% endblock content %}

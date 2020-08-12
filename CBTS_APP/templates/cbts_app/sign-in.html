@@ -1,0 +1,13 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+
+    <form method="POST">
+        <fieldset class="form-group">
+            {% csrf_token %}
+            <legend class="border-bottom mb-4">Log in</legend>
+            {{ form }}
+        </fieldset>
+        <button type="submit">Log in</button>
+    </form>
+{% endblock content %}

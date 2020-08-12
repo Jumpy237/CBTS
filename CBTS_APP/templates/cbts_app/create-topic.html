@@ -1,0 +1,17 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+<b>List of Topics</b><br>
+{% for o in topics %}
+{{forloop.counter}}.{{o.title}}<br>
+{% endfor %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form}}
+    
+    
+    <input type='submit' name='todo' value='continue'>
+    <input type='submit' name='todo' value='stop'>
+</form>
+
+{% endblock content %}

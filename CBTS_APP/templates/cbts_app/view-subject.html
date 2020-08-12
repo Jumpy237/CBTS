@@ -1,0 +1,24 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+<style>
+    .button
+    {
+        left: 45%;
+    }
+</style>
+
+<b>List of your Subjects</b><br>
+{% for o in subjects %}
+{{o.title}}
+<form action="" method='POST'>
+    {% csrf_token %}
+    <input class='button' type="submit" name='todo' value="add topics"/>
+    <input class='button' type="submit" name='todo' value="add questions"/>
+    <input class='button' type='submit' name='todo' value='generate test'>
+    <input class='button' type='hidden' name='title' value='{{o.title}}'/>
+</form>
+<br>
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+<style>
+    form
+    {
+        padding-top:30px;
+    }
+</style>
+    <form method="POST" enctype="multipart/form-data">
+        <fieldset class="form-group">
+            {% csrf_token %}
+            <legend class="border-bottom mb-4"></legend>
+            {{ form.as_p }}
+        <input type="radio" name="type" value="Student">
+        <label for="Student">Student</label>
+        <input type="radio" name="type" value="Teacher">
+        <label for="Teacher">Teacher</label>
+        </fieldset>
+        <button type="submit">Register</button>
+    </form>
+{% endblock content%}

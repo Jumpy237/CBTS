@@ -1,0 +1,21 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+{% for q in questions %}
+<b>{{forloop.counter}}.</b> {{q.title}} <b>difficulty</b>: {{q.difficulty}}
+<form action='' method='POST'>
+    {% csrf_token %}
+    <input type='submit' name='todo' value='edit choice'>
+    <input type='hidden' name='qnumber' value={{q.id}}>
+</form>
+{% endfor %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form}}
+    number of choices:
+    <input type='text' name='nquestion' >
+    <input type='hidden' name='todo' value='edit question'>
+    <input type='submit'>
+</form>
+
+{% endblock content %}

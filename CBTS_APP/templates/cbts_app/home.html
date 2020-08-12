@@ -1,0 +1,30 @@
+
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+        <style>
+      
+            .sbutton
+            {
+                padding: 15px 32px;
+                position: fixed;
+                top: 50%;
+                left: 45%;
+            }
+            .rbutton
+            {
+                padding: 15px 32px;
+                position: fixed;
+                top: 50%;
+                left: 55%;
+            }
+        </style>
+
+            
+            <button class="sbutton" type="submit" onclick="location.href='sign_in'">Sign in</button>
+           
+            
+            
+            <button class="rbutton" type="button" onclick="location.href='register'">Register</button>
+            
+{% endblock content %}
