@@ -15,4 +15,5 @@ urlpatterns = [
     path('create-topic', views.create_topic, name='cbts-create-topic'),
     path('create-questions', views.create_question, name='cbts-create-question'),
     path('create-choice', views.create_choice, name='cbts-create-choice'),
+    path('create-test', views.create_test, name='cbts-create-test'),
 ]

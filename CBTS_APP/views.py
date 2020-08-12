@@ -194,6 +194,8 @@ def view_subject(request):
             return redirect('cbts-create-topic')
         elif request.POST['todo'] == 'add questions':
             return redirect('cbts-create-question')
+        elif request.POST['todo'] == 'generate test':
+            return redirect('cbts-create-test')
 
     return render(request, 'cbts_app/view-subject.html', context)
 
@@ -220,11 +222,16 @@ def create_question(request):
         
 
         if question_form.is_valid():
-            question_form.save()
+            question_form.full_clean()
+            q_obj = question_form.save()
             request.session['nquestion'] = request.POST['nquestion']
             question_form = QuestionForm(initial={'subject' : subject_obj})
-            question_form.fields['topic'].queryset = Topic.objects.filter(subject=subject_obj)
+            question_form.fields['topic'].queryset = CompositeObjective.objects.filter(subject=subject_obj)
             
+            #increment comp_obj
+            c = CompositeObjective.objects.get(id=q_obj.topic.id)
+            c.cnt = c.cnt + 1
+            c.save()
         
     context = {'form' : question_form, 'questions' : questions}
     return render(request, 'cbts_app/create-question.html', context)
@@ -242,3 +249,19 @@ def create_choice(request):
             choice_form.save()
 
     return render(request, 'cbts_app/create-choice.html', context)
+
+def create_test(request):
+    subject_obj = Subject.objects.get(title=request.session['title'])
+    comp_objs = CompositeObjective.objects.filter(subject=subject_obj)
+
+    for obj in comp_objs:
+        question_objs = Question.objects.filter(topic=obj)
+        sum_diff = 0
+        cnt = 0
+        for question in question_objs:
+            sum_diff += question.difficulty
+            cnt += 1
+        if cnt != 0:
+            print(sum_diff, sum_diff/cnt)
+    context = {'subject' : subject_obj, 'objs' : comp_objs}
+    return render(request, 'cbts_app/create-test.html', context)

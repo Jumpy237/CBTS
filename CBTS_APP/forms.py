@@ -37,7 +37,12 @@ class QuestionForm(ModelForm):
     class Meta:
         model = Question
         fields = '__all__'
-        widgets = {'subject': forms.HiddenInput()}
+        widgets = {
+            'subject': forms.HiddenInput(),
+            'difficulty' : forms.TextInput(attrs={'placeholder' : 'enter 1-3'}),
+        }
+
+   
 
 class ChoiceForm(ModelForm):
     class Meta:

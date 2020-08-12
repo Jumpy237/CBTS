@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 # Create your models here.
 
 
@@ -55,7 +57,7 @@ class CompositeObjective(models.Model):
 class Question(models.Model):
 
     title = models.TextField(max_length=500)
-    difficulty = models.IntegerField(default=1)
+    difficulty = models.IntegerField(validators=[MaxValueValidator(3), MinValueValidator(1)])
     topic = models.ForeignKey(CompositeObjective, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 

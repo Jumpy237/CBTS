@@ -1,0 +1,13 @@
+{% extends "cbts_app/base.html" %}
+
+{% block content %}
+<b>{{subject.title}}</b><br>
+<form method='post'>
+{% for o in objs %}
+<b>Objective:</b> {{o}} <br>#questions: {{o.cnt}}<br>
+<input type='number' name={{o.id}}>  <br>
+
+{% endfor %}
+<input type='submit'>
+</form>
+{% endblock content %}
